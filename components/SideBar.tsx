@@ -5,6 +5,7 @@ import { BiSearch } from "react-icons/bi"
 import { HiHome } from "react-icons/hi"
 import { twMerge } from "tailwind-merge"
 import Box from "./Box"
+import Library from "./Library"
 import SidebarItem from "./SidebarItem"
 
 interface SideBarProps {
@@ -59,11 +60,11 @@ const SideBar:React.FC<SideBarProps> = ({children}) => {
             </div>
           </Box>
           <Box className="overflow-y-auto h-full">
-            Playlist
+            <Library />
           </Box>
         </div>
       
-      <main>
+      <main className="h-full flex-1 overflow-y-auto py-2 pr-2 bg-black">
         {children}
       </main>
       </div>
