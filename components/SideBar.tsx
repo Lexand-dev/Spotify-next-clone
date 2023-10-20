@@ -1,4 +1,5 @@
 'use client'
+import { Song } from "@/types"
 import { usePathname } from "next/navigation"
 import { useMemo } from "react"
 import { BiSearch } from "react-icons/bi"
@@ -9,10 +10,14 @@ import Library from "./Library"
 import SidebarItem from "./SidebarItem"
 
 interface SideBarProps {
-  children?: React.ReactNode
+  children: React.ReactNode
+  songs: Song[]
 }
 
-const SideBar:React.FC<SideBarProps> = ({children}) => {
+const SideBar:React.FC<SideBarProps> = ({
+  children,
+  songs
+}) => {
   const pathname = usePathname()
   const routes = useMemo(() => [
     {
@@ -60,7 +65,7 @@ const SideBar:React.FC<SideBarProps> = ({children}) => {
             </div>
           </Box>
           <Box className="overflow-y-auto h-full">
-            <Library />
+            <Library songs={songs} />
           </Box>
         </div>
       

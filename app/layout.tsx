@@ -1,3 +1,4 @@
+import getSongsByUserId from '@/actions/getSongsByUserId'
 import SideBar from '@/components/SideBar'
 import ModalProvider from '@/providers/ModalProvider'
 import SupabaseProvider from '@/providers/SupabaseProvider'
@@ -14,11 +15,16 @@ export const metadata: Metadata = {
   description: 'Listen to music code.',
 }
 
-export default function RootLayout({
+export const revalidate = 0
+
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
+  const userSongs = await getSongsByUserId()
+  console.log(userSongs)
+
   return (
     <html lang="en">
       <body className={font.className}>
@@ -26,7 +32,7 @@ export default function RootLayout({
         <SupabaseProvider>
           <UserProvider>
             <ModalProvider/>
-            <SideBar>
+            <SideBar songs={userSongs} >
               {children}
             </SideBar>
           </UserProvider>
