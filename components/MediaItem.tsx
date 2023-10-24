@@ -6,7 +6,7 @@ import Image from "next/image";
 
 interface MediaItemProps {
   data: Song;
-  onClick: (id: string) => void; 
+  onClick?: (id: string) => void; 
   }
 
 const MediaItem: React.FC<MediaItemProps> = ({
@@ -54,7 +54,7 @@ const MediaItem: React.FC<MediaItemProps> = ({
       <div className="flex flex-col gap-y-1 overflow-hidden">
         <p className="text-white truncate">{data.title}</p>
         <p className="text-neutral-400 text-sm truncate">
-          By {data.author}
+          {data.author}
         </p>
       </div>
     </div>

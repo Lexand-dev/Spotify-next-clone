@@ -1,4 +1,5 @@
 'use client'
+import usePlayer from "@/hooks/usePlayer"
 import { Song } from "@/types"
 import { usePathname } from "next/navigation"
 import { useMemo } from "react"
@@ -18,6 +19,7 @@ const SideBar:React.FC<SideBarProps> = ({
   children,
   songs
 }) => {
+  const player = usePlayer()
   const pathname = usePathname()
   const routes = useMemo(() => [
     {
@@ -40,7 +42,9 @@ const SideBar:React.FC<SideBarProps> = ({
         className={twMerge(`
           flex
           h-full
-        `)}
+        `,
+        player.activeId && 'h-[calc(100%-80px)]'
+        )}
       >
         <div 
           className="
